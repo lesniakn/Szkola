@@ -1,0 +1,66 @@
+﻿@model Szkola.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pesel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pesel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imie_matki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie_matki)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imie_ojca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie_ojca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_urodzenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_urodzenia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

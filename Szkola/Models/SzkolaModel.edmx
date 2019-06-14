@@ -1,0 +1,814 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BazaSzkolaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Budynek">
+          <Key>
+            <PropertyRef Name="BudynekID" />
+          </Key>
+          <Property Name="BudynekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ulica" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nr_budynku" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Kod_pocztowy" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Miejscowosc" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nauczyciel">
+          <Key>
+            <PropertyRef Name="NauczycielID" />
+          </Key>
+          <Property Name="NauczycielID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stopien" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prowadzi">
+          <Key>
+            <PropertyRef Name="ProwadziID" />
+          </Key>
+          <Property Name="ProwadziID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrzedmiotID" Type="int" Nullable="false" />
+          <Property Name="NauczycielID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Przedmiot">
+          <Key>
+            <PropertyRef Name="PrzedmiotID" />
+          </Key>
+          <Property Name="PrzedmiotID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="SalaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="SalaID" />
+          </Key>
+          <Property Name="SalaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="BudynekID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pesel" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Imie_matki" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imie_ojca" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data_urodzenia" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zapisy">
+          <Key>
+            <PropertyRef Name="ZapisyID" />
+          </Key>
+          <Property Name="ZapisyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="PrzedmiotID" Type="int" Nullable="false" />
+          <Property Name="Data_zapisu" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BudynekSala">
+          <End Role="Budynek" Type="Self.Budynek" Multiplicity="1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budynek">
+              <PropertyRef Name="BudynekID" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="BudynekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NauczycielProwadzi">
+          <End Role="Nauczyciel" Type="Self.Nauczyciel" Multiplicity="1" />
+          <End Role="Prowadzi" Type="Self.Prowadzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nauczyciel">
+              <PropertyRef Name="NauczycielID" />
+            </Principal>
+            <Dependent Role="Prowadzi">
+              <PropertyRef Name="NauczycielID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrzedmiotProwadzi">
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="1" />
+          <End Role="Prowadzi" Type="Self.Prowadzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przedmiot">
+              <PropertyRef Name="PrzedmiotID" />
+            </Principal>
+            <Dependent Role="Prowadzi">
+              <PropertyRef Name="PrzedmiotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrzedmiotZapisy">
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="1" />
+          <End Role="Zapisy" Type="Self.Zapisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przedmiot">
+              <PropertyRef Name="PrzedmiotID" />
+            </Principal>
+            <Dependent Role="Zapisy">
+              <PropertyRef Name="PrzedmiotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalaPrzedmiot">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="SalaID" />
+            </Principal>
+            <Dependent Role="Przedmiot">
+              <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentZapisy">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Zapisy" Type="Self.Zapisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Zapisy">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BazaSzkolaModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Budynek" EntityType="Self.Budynek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nauczyciel" EntityType="Self.Nauczyciel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prowadzi" EntityType="Self.Prowadzi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Przedmiot" EntityType="Self.Przedmiot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zapisy" EntityType="Self.Zapisy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BudynekSala" Association="Self.FK_BudynekSala">
+            <End Role="Budynek" EntitySet="Budynek" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NauczycielProwadzi" Association="Self.FK_NauczycielProwadzi">
+            <End Role="Nauczyciel" EntitySet="Nauczyciel" />
+            <End Role="Prowadzi" EntitySet="Prowadzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrzedmiotProwadzi" Association="Self.FK_PrzedmiotProwadzi">
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+            <End Role="Prowadzi" EntitySet="Prowadzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrzedmiotZapisy" Association="Self.FK_PrzedmiotZapisy">
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+            <End Role="Zapisy" EntitySet="Zapisy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalaPrzedmiot" Association="Self.FK_SalaPrzedmiot">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentZapisy" Association="Self.FK_StudentZapisy">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Zapisy" EntitySet="Zapisy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BazaSzkolaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Budynek">
+          <Key>
+            <PropertyRef Name="BudynekID" />
+          </Key>
+          <Property Name="BudynekID" Type="Int32" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nr_budynku" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Kod_pocztowy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Miejscowosc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK_BudynekSala" FromRole="Budynek" ToRole="Sala" />
+        </EntityType>
+        <EntityType Name="C__RefactorLog1">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nauczyciel">
+          <Key>
+            <PropertyRef Name="NauczycielID" />
+          </Key>
+          <Property Name="NauczycielID" Type="Int32" Nullable="false" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Stopien" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Prowadzi" Relationship="Self.FK_NauczycielProwadzi" FromRole="Nauczyciel" ToRole="Prowadzi" />
+        </EntityType>
+        <EntityType Name="Prowadzi">
+          <Key>
+            <PropertyRef Name="ProwadziID" />
+          </Key>
+          <Property Name="ProwadziID" Type="Int32" Nullable="false" />
+          <Property Name="PrzedmiotID" Type="Int32" Nullable="false" />
+          <Property Name="NauczycielID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nauczyciel" Relationship="Self.FK_NauczycielProwadzi" FromRole="Prowadzi" ToRole="Nauczyciel" />
+          <NavigationProperty Name="Przedmiot" Relationship="Self.FK_PrzedmiotProwadzi" FromRole="Prowadzi" ToRole="Przedmiot" />
+        </EntityType>
+        <EntityType Name="Przedmiot">
+          <Key>
+            <PropertyRef Name="PrzedmiotID" />
+          </Key>
+          <Property Name="PrzedmiotID" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SalaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prowadzi" Relationship="Self.FK_PrzedmiotProwadzi" FromRole="Przedmiot" ToRole="Prowadzi" />
+          <NavigationProperty Name="Zapisy" Relationship="Self.FK_PrzedmiotZapisy" FromRole="Przedmiot" ToRole="Zapisy" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK_SalaPrzedmiot" FromRole="Przedmiot" ToRole="Sala" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="SalaID" />
+          </Key>
+          <Property Name="SalaID" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BudynekID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Budynek" Relationship="Self.FK_BudynekSala" FromRole="Sala" ToRole="Budynek" />
+          <NavigationProperty Name="Przedmiot" Relationship="Self.FK_SalaPrzedmiot" FromRole="Sala" ToRole="Przedmiot" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Pesel" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Imie_matki" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Imie_ojca" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Data_urodzenia" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Zapisy" Relationship="Self.FK_StudentZapisy" FromRole="Student" ToRole="Zapisy" />
+        </EntityType>
+        <EntityType Name="Zapisy">
+          <Key>
+            <PropertyRef Name="ZapisyID" />
+          </Key>
+          <Property Name="ZapisyID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="PrzedmiotID" Type="Int32" Nullable="false" />
+          <Property Name="Data_zapisu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Przedmiot" Relationship="Self.FK_PrzedmiotZapisy" FromRole="Zapisy" ToRole="Przedmiot" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_StudentZapisy" FromRole="Zapisy" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_BudynekSala">
+          <End Role="Budynek" Type="Self.Budynek" Multiplicity="1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budynek">
+              <PropertyRef Name="BudynekID" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="BudynekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NauczycielProwadzi">
+          <End Role="Nauczyciel" Type="Self.Nauczyciel" Multiplicity="1" />
+          <End Role="Prowadzi" Type="Self.Prowadzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nauczyciel">
+              <PropertyRef Name="NauczycielID" />
+            </Principal>
+            <Dependent Role="Prowadzi">
+              <PropertyRef Name="NauczycielID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrzedmiotProwadzi">
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="1" />
+          <End Role="Prowadzi" Type="Self.Prowadzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przedmiot">
+              <PropertyRef Name="PrzedmiotID" />
+            </Principal>
+            <Dependent Role="Prowadzi">
+              <PropertyRef Name="PrzedmiotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrzedmiotZapisy">
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="1" />
+          <End Role="Zapisy" Type="Self.Zapisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przedmiot">
+              <PropertyRef Name="PrzedmiotID" />
+            </Principal>
+            <Dependent Role="Zapisy">
+              <PropertyRef Name="PrzedmiotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalaPrzedmiot">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="SalaID" />
+            </Principal>
+            <Dependent Role="Przedmiot">
+              <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentZapisy">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Zapisy" Type="Self.Zapisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Zapisy">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BazaSzkolaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Budynek" EntityType="Self.Budynek" />
+          <EntitySet Name="C__RefactorLog1" EntityType="Self.C__RefactorLog1" />
+          <EntitySet Name="Nauczyciel" EntityType="Self.Nauczyciel" />
+          <EntitySet Name="Prowadzi" EntityType="Self.Prowadzi" />
+          <EntitySet Name="Przedmiot" EntityType="Self.Przedmiot" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Zapisy" EntityType="Self.Zapisy" />
+          <AssociationSet Name="FK_BudynekSala" Association="Self.FK_BudynekSala">
+            <End Role="Budynek" EntitySet="Budynek" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NauczycielProwadzi" Association="Self.FK_NauczycielProwadzi">
+            <End Role="Nauczyciel" EntitySet="Nauczyciel" />
+            <End Role="Prowadzi" EntitySet="Prowadzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrzedmiotProwadzi" Association="Self.FK_PrzedmiotProwadzi">
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+            <End Role="Prowadzi" EntitySet="Prowadzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrzedmiotZapisy" Association="Self.FK_PrzedmiotZapisy">
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+            <End Role="Zapisy" EntitySet="Zapisy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalaPrzedmiot" Association="Self.FK_SalaPrzedmiot">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentZapisy" Association="Self.FK_StudentZapisy">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Zapisy" EntitySet="Zapisy" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="BazaSzkolaModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="BazaSzkolaModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="BazaSzkolaModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="BazaSzkolaModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="BazaSzkolaModel.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="BazaSzkolaModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="BazaSzkolaModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="BazaSzkolaModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BazaSzkolaModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BazaSzkolaModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BazaSzkolaModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="BazaSzkolaModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="BazaSzkolaModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="BazaSzkolaModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="BazaSzkolaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BazaSzkolaModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="BazaSzkolaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BazaSzkolaModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="BazaSzkolaModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="BazaSzkolaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BazaSzkolaModelStoreContainer" CdmEntityContainer="BazaSzkolaEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Budynek">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.Budynek">
+              <MappingFragment StoreEntitySet="Budynek">
+                <ScalarProperty Name="BudynekID" ColumnName="BudynekID" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Nr_budynku" ColumnName="Nr_budynku" />
+                <ScalarProperty Name="Kod_pocztowy" ColumnName="Kod_pocztowy" />
+                <ScalarProperty Name="Miejscowosc" ColumnName="Miejscowosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog1">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.C__RefactorLog1">
+              <MappingFragment StoreEntitySet="C__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nauczyciel">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.Nauczyciel">
+              <MappingFragment StoreEntitySet="Nauczyciel">
+                <ScalarProperty Name="NauczycielID" ColumnName="NauczycielID" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Stopien" ColumnName="Stopien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prowadzi">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.Prowadzi">
+              <MappingFragment StoreEntitySet="Prowadzi">
+                <ScalarProperty Name="ProwadziID" ColumnName="ProwadziID" />
+                <ScalarProperty Name="PrzedmiotID" ColumnName="PrzedmiotID" />
+                <ScalarProperty Name="NauczycielID" ColumnName="NauczycielID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Przedmiot">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.Przedmiot">
+              <MappingFragment StoreEntitySet="Przedmiot">
+                <ScalarProperty Name="PrzedmiotID" ColumnName="PrzedmiotID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="SalaID" ColumnName="SalaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sala">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.Sala">
+              <MappingFragment StoreEntitySet="Sala">
+                <ScalarProperty Name="SalaID" ColumnName="SalaID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="BudynekID" ColumnName="BudynekID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+                <ScalarProperty Name="Imie_matki" ColumnName="Imie_matki" />
+                <ScalarProperty Name="Imie_ojca" ColumnName="Imie_ojca" />
+                <ScalarProperty Name="Data_urodzenia" ColumnName="Data_urodzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zapisy">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.Zapisy">
+              <MappingFragment StoreEntitySet="Zapisy">
+                <ScalarProperty Name="ZapisyID" ColumnName="ZapisyID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="PrzedmiotID" ColumnName="PrzedmiotID" />
+                <ScalarProperty Name="Data_zapisu" ColumnName="Data_zapisu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="BazaSzkolaModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="BazaSzkolaModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
